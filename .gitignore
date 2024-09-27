@@ -1,0 +1,59 @@
+# .NET Core files
+bin/
+obj/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# Mono auto-generated files
+mono_crash.*
+
+# Visual Studio specific files
+.vscode/
+.vs/
+*.vcxproj.user
+*.code-workspace
+
+# ASP.NET Core Scaffolding
+ScaffoldingReadMe.txt
+
+# IIS Express settings
+iisexpress/
+.vs/
+
+# Backup & Log Files
+*.log
+*.tlog
+*.vspscc
+*.vssscc
+*.class
+
+# Windows-specific files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Rider specific files
+.idea/
+.idea_modules/
+
+# Auto-generated AssemblyInfo files
+AssemblyInfo.cs
+
+# User Secrets (used for storing sensitive information during development)
+secrets.json
+
+# Publish output folder
+publish/
+
+# Dotnet specific files
+*.swp
