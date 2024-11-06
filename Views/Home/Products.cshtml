@@ -1,0 +1,62 @@
+﻿@model List<ProductCategory>
+
+@{
+	ViewData["Title"] = "Products";
+}
+
+<section id="product-categories-container" class="admin-product-categories-container">
+    <div class="container">
+
+        <div class="row text-center mb-0 mt-5">
+            <div class="col-12">
+                <h2 class="section-title">Display Of</h2>
+                <h3 class="section-sub-title">Products</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            @if (!Model.Any())
+            {
+                <p>No product categories available.</p>
+            }
+            else
+            {
+                foreach (var category in Model)
+                {
+                    <div class="col-12 mb-4">
+                        <div class="row admin-category-card align-items-center">
+
+                            @* Image on the left *@
+                            <div class="col-md-4">
+                                @if (!string.IsNullOrEmpty(category.ImagePath))
+                                {
+                                    <img src="@category.ImagePath" alt="@category.Title" class="admin-category-image img-fluid" />
+                                }
+                            </div>
+
+                            @* Details on the right *@
+                            <div class="col-md-8">
+                                <div class="admin-category-body">
+                                    <h5 class="admin-category-title">@category.Title</h5>
+                                    <p class="admin-category-description">
+                                        @if (!string.IsNullOrEmpty(category.Description) && category.Description.Length > 255)
+                                        {
+                                            @category.Description.Substring(0, 255)
+                                            
+                                                    }
+                                        else
+                                        {
+                                            @category.Description
+                                        }...
+                                    </p>
+                                    <a href="/Products/Category/@category.Id" class="btn btn-primary">View Details</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>

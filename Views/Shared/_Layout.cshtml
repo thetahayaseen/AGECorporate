@@ -1,49 +1,213 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AGECorporate</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/AGECorporate.styles.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AGECorporate</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+﻿
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - AGECorporate - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
+            <!-- Basic Page Needs
+            ================================================== -->
+            <meta charset="utf-8">
+            <title>@ViewData["Title"] - AGECorporate</title>
+
+            <!-- Mobile Specific Metas
+            ================================================== -->
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="description" content="Construction Html5 Template">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+            <!-- CSS
+            ================================================== -->
+            <!-- Bootstrap -->
+            <link rel="stylesheet" href="~/plugins/bootstrap/bootstrap.min.css">
+            <!-- FontAwesome -->
+            <link rel="stylesheet" href="~/plugins/fontawesome/css/all.min.css">
+            <!-- Animation -->
+            <link rel="stylesheet" href="~/plugins/animate-css/animate.css">
+            <!-- slick Carousel -->
+            <link rel="stylesheet" href="~/plugins/slick/slick.css">
+            <link rel="stylesheet" href="~/plugins/slick/slick-theme.css">
+            <!-- Colorbox -->
+            <link rel="stylesheet" href="~/plugins/colorbox/colorbox.css">
+            <!-- Template styles-->
+            <link rel="stylesheet" href="~/css/style.css">
+
+        </head>
+        <body>
+            <div class="body-inner">
+
+
+                <!-- Header start -->
+                <header id="header" class="header-one">
+                    <div class="bg-white">
+                        <div class="container">
+                            <div class="logo-area">
+                                <div class="row align-items-center">
+                                    <div class="logo col-lg-3 text-center text-lg-left mb-3 mb-md-5 mb-lg-0">
+                                        <a class="d-block" asp-action="Index">
+                                            <h1 style="font-size:3rem">AGE</h1>
+                                        </a>
+                                    </div><!-- logo end -->
+
+                                    <div class="col-lg-9 header-right">
+                                        <ul class="top-info-box">
+                                            <li>
+                                                <div class="info-box">
+                                                    <div class="info-box-content">
+                                                        <p class="info-box-title">Call Us</p>
+                                                <p class="info-box-subtitle"><a href="tel:+923333065301">(+92) 333 3065 301</a></p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="info-box">
+                                                    <div class="info-box-content">
+                                                        <p class="info-box-title">Email Us</p>
+                                                        <p class="info-box-subtitle"><a href="mailto:info@alghazalienterprises.com">info@alghazalienterprises.com</a></p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="header-get-a-quote">
+                                                <a class="btn btn-primary" asp-controller="Contact" asp-action="Index">Get A Quote</a>
+                                            </li>
+                                        </ul><!-- Ul end -->
+                                    </div><!-- header right end -->
+                                </div><!-- logo area end -->
+
+                            </div><!-- Row end -->
+                        </div><!-- Container end -->
+                    </div>
+
+                    <partial name="_Navigation" />
+                </header>
+                <!--/ Header end -->
+
+<div id="banner-area" class="banner-area" style="background-image:url('@Url.Content("~/images/banner/banner1.jpg")?v=@DateTime.Now.Ticks')">
+            <div class="banner-text">
+                    <div class="container">
+                        <div class="row">
+                          <div class="col-lg-12">
+                              <div class="banner-heading">
+                                <h1 class="banner-title">@ViewData["Title"]</h1>
+                              </div>
+                          </div><!-- Col end -->
+                        </div><!-- Row end -->
+                    </div><!-- Container end -->
+                  </div><!-- Banner text end -->
+                </div><!-- Banner area end --> 
+
+                <!-- #Body -->
+                    @RenderBody()
+
+                <!-- Footer start -->
+                <footer id="footer" class="footer bg-overlay mt-5">
+                    <div class="footer-main">
+                        <div class="container">
+                            <div class="row justify-content-between">
+                                <div class="col-lg-4 col-md-6 footer-widget footer-about">
+                                    <h3 class="widget-title">About Us</h3>
+                                    <h1 class="text-light">AGE</h1>
+                                    <p>
+                                        Al Ghazali Enterprises is committed to delivering excellence in every aspect of our business. We pride ourselves on building strong relationships with our clients and delivering solutions that exceed expectations.
+                                    </p>
+                                    <div class="footer-social">
+                                        <ul>
+                                            <li>
+                                                <a href="https://facebook.com" aria-label="Facebook">
+                                                    <i class="fab fa-facebook-f"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://twitter.com" aria-label="Twitter">
+                                                    <i class="fab fa-twitter"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://instagram.com" aria-label="Instagram">
+                                                    <i class="fab fa-instagram"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div><!-- Footer social end -->
+                                </div><!-- Col end -->
+
+                                <div class="col-lg-4 col-md-6 footer-widget mt-5 mt-md-0">
+                                    <h3 class="widget-title">Get in Touch</h3>
+                                    <p>If you have any inquiries or need further information, feel free to reach out to us through our contact form or visit our office.</p>
+                                    <p>Email: <a href="mailto:info@alghazalienterprises.com">info@alghazalienterprises.com</a></p>
+                                    <p>Phone: <a href="tel:+923333065301">+92 333 3065 301</a></p>
+                                </div><!-- Col end -->
+
+                                <div class="col-lg-3 col-md-6 mt-5 mt-lg-0 footer-widget">
+                                    <h3 class="widget-title">Quick Links</h3>
+                                    <ul class="list-arrow">
+                                        <li><a asp-controller="Home" asp-action="About"><i class="fas fa-info-circle"></i> About Us</a></li>
+                                <li><a asp-controller="Home" asp-action="Contact"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                            </ul>
+                                </div><!-- Col end -->
+                            </div><!-- Row end -->
+                        </div><!-- Container end -->
+                    </div><!-- Footer main end -->
+                </footer>
+                <!-- Footer end -->
+
+<script>
+                var url = 'https://wati-integration-prod-service.clare.ai/v2/watiWidget.js?75360';
+                var s = document.createElement('script');
+                s.type = 'text/javascript';
+                s.async = true;
+                s.src = url;
+                var options = {
+                "enabled":true,
+                "chatButtonSetting":{
+                    "backgroundColor":"#1d4e65",
+                    "ctaText":"Chat with us",
+                    "borderRadius":"25",
+                    "marginLeft": "0",
+                    "marginRight": "20",
+                    "marginBottom": "20",
+                    "ctaIconWATI":false,
+                    "position":"right"
+                },
+                "brandSetting":{
+                    "brandName":"Al Ghazali Enterprises",
+                    "brandSubTitle":"undefined",
+                    "brandImg":"",
+                    "welcomeText":"Hi there!\nHow can We help you?",
+                    "messageText":"Hello, %0ACan you answer a query?",
+                    "backgroundColor":"#1d4e65",
+                    "ctaText":"Chat with us",
+                    "borderRadius":"25",
+                    "autoShow":true,
+                    "phoneNumber":"923333065301"
+                }
+                };
+                s.onload = function() {
+                    CreateWhatsappChatWidget(options);
+                };
+                var x = document.getElementsByTagName('script')[0];
+                x.parentNode.insertBefore(s, x);
+            </script>
+            
+            <!-- Javascript Files
+                ================================================== -->
+                <!-- initialize jQuery Library -->
+                <script src="~/plugins/jQuery/jquery.min.js"></script>
+                <!-- Bootstrap jQuery -->
+                <script src="~/plugins/bootstrap/bootstrap.min.js" defer></script>
+                <!-- Slick Carousel -->
+                <script src="~/plugins/slick/slick.min.js"></script>
+                <script src="~/plugins/slick/slick-animation.min.js"></script>
+                <!-- Color box -->
+                <script src="~/plugins/colorbox/jquery.colorbox.js"></script>
+                <!-- shuffle -->
+                <script src="~/plugins/shuffle/shuffle.min.js" defer></script>
+
+                <!-- Template custom -->
+                <script src="~/js/script.js"></script>
+                @await RenderSectionAsync("Scripts", required: false)
+
+            </div>
+            <!-- Body inner end -->
+
+        </body>
+
+        </html>

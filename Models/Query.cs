@@ -13,7 +13,7 @@ public partial class Query
 
     public string PhoneNumber { get; set; } = null!;
 
-    public string Query1 { get; set; } = null!;
+    public string Message { get; set; } = null!;
 
     public string? Reply { get; set; }
 }

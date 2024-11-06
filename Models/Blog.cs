@@ -9,7 +9,7 @@ public partial class Blog
 
     public string Header { get; set; } = null!;
 
-    public string? AssociatedImages { get; set; }
+    public string? AssociatedImage { get; set; }
 
     public string Content { get; set; } = null!;
 }

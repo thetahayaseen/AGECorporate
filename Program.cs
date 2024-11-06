@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using AGECorporate.Models;
+using AGECorporate.Repo_Patterns;
+
 namespace AGECorporate
 {
     public class Program
@@ -8,32 +10,50 @@ namespace AGECorporate
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            var connectionString = builder.Configuration.GetConnectionString("AgeCorporateContextConnection") ?? throw new InvalidOperationException("Connection string 'AgeCorporateContextConnection' not found.");
 
-            builder.Services.AddDbContext<AgeCorporateContext>(options => options.UseSqlServer(connectionString));
+            // Configure the database context with the connection string
+            builder.Services.AddDbContext<DatabaseContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<AgeCorporateContext>();
+            // Use custom AspNetUser class instead of IdentityUser
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                options.SignIn.RequireConfirmedEmail = false;
+            })
+            .AddEntityFrameworkStores<DatabaseContext>()
+            .AddDefaultTokenProviders();
 
-            // Add services to the container.
+            // Register your repositories
+            builder.Services.AddScoped<IQueryRepository, QueryRepository>();
+            builder.Services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+            // Add Razor Pages and MVC
+            builder.Services.AddRazorPages();
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            // Configure the HTTP request pipeline
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
+            app.UseForwardedHeaders();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
 
+            app.UseAuthentication(); // Ensure authentication is in the pipeline
             app.UseAuthorization();
 
+            // Map Razor pages and MVC routes
+            app.MapRazorPages();
+            app.MapControllers();
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");

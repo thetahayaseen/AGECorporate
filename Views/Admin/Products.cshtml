@@ -1,0 +1,57 @@
+﻿    @model List<Product>
+
+    @{
+        ViewData["title"] = "Products";
+    }
+
+    <section id="product-categories-container" class="admin-product-categories-container">
+        <div class="container">
+
+            <div class="row text-center mb-0 mt-5">
+                <div class="col-12">
+                    <h2 class="section-title">View</h2>
+                    <h3 class="section-sub-title mb-3">Products</h3>
+                    <a asp-controller="Product" asp-action="Create" class="btn btn-primary mb-5">Create</a>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                @if (!Model.Any())
+                {
+                    <p>No products available.</p>
+                }
+                else
+                {
+                    foreach (var product in Model)
+                    {
+                        <div class="mt-0 col-md-4 mb-4">
+                            <div class="admin-category-card">
+                                @if (!string.IsNullOrEmpty(product.ImagePath))
+                                {
+                                    <img src="@product.ImagePath" alt="@product.Title" class="admin-category-image" />
+                                }
+                                <div class="admin-category-body">
+                                <h5 class="admin-category-title">@product.Title</h5>
+                                <p class="admin-category-description">
+                                    @if (!string.IsNullOrEmpty(product.Description) && product.Description.Length > 255)
+                                    {
+                                        @product.Description.Substring(0, 255)
+                                    }
+                                    else
+                                    {
+                                        @product.Description
+                                    }...
+                                </p>
+                                <p class="admin-category-created-at">
+                                        Created At: @product.CreatedAt?.ToString("MMMM dd, yyyy")
+                                    </p>
+                                    <a asp-controller="Product" asp-action="Update" asp-route-id="@product.Id" class="btn btn-primary">Update</a>
+                                    <a asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id" class="btn btn-primary">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </section>
